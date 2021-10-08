@@ -16,11 +16,12 @@ public class ArrayStackTest{
         stack1.push(6);
         System.out.println("Peek Test 2: " + stack1.peek());
 
-        System.out.println("Pop Test1: " + stack1.pop());
+        System.out.println("Pop Test 1: " + stack1.pop());
         System.out.println("Pop Test 2: " + stack1.pop());
 
-        stack1.clear();
+        System.out.println("Peek Test 3: " + stack1.peek());
 
+        stack1.clear();
         System.out.println("Peek Test After Clear (Should throw exception): " + stack1.peek());
 
 
