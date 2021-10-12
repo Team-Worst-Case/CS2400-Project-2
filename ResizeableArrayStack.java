@@ -85,7 +85,8 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
       // but do not deallocate the array
       while (topIndex > -1)
       {
-         stack[topIndex] = null;topIndex--;
+         stack[topIndex] = null;
+         topIndex--;
       }
       //Assertion: topIndex is -1
    }
@@ -100,5 +101,29 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
    {
       if (!integrityOK)
          throw new SecurityException("ArrayBag object is corrupt.");
+   }
+
+   //Evaluates a postfix expression
+   public T evaluatePostfix(String postfix) {
+      ResizeableArrayStack<T> valueStack = new ResizeableArrayStack<T>(postfix.length());
+
+      while (valueStack.topIndex < postfix.length())
+      {
+         char nextCharacter = postfix.charAt(topIndex + 1);
+         switch (nextCharacter)
+         {
+            case variable:
+               valueStack.push(nextCharacter);
+               break;
+            case '+' : case '-' : case '/' : case '^' :
+               operandTwo = valueStack.pop();
+               operandOne = valueStack.pop();
+               result = //the result of the operation in nextCharacter and its operands operandOne and operandTwo
+               valueStack.push(result);
+               break;
+            default: break; //Ignore unexpected characters
+         }
+      }
+      return valueStack.peek();
    }
 }
