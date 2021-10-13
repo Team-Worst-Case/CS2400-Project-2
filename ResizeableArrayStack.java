@@ -103,22 +103,51 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
          throw new SecurityException("ArrayBag object is corrupt.");
    }
 
-   //Evaluates a postfix expression
-   public T evaluatePostfix(String postfix) {
-      ResizeableArrayStack<T> valueStack = new ResizeableArrayStack<T>(postfix.length());
+   private static int eval(char op, int a, int b) 
+   {
+      
+      int result = -1;
+      if (op == '+')
+         return a + b;
+      else if (op == '-')
+         return a - b;
+      else if (op == '*')
+         return a * b;
+      else if (op == '/')
+         return a / b;
+      else if (op == '^')
+         return (int)Math.pow(a, b);
+      return result;
+  }
 
-      while (valueStack.topIndex < postfix.length())
+   //Evaluates a postfix expression
+   public int evaluatePostfix(String postfix) {
+      ResizeableArrayStack<Integer> valueStack = new ResizeableArrayStack<Integer>(postfix.length());
+
+      while (valueStack.topIndex < postfix.length()) //Postfix has characters left to parse
       {
          char nextCharacter = postfix.charAt(topIndex + 1);
          switch (nextCharacter)
          {
-            case variable:
-               valueStack.push(nextCharacter);
+            case 'a' :
+               valueStack.push(2);
+               break;
+            case 'b' :
+               valueStack.push(3);
+               break;
+            case 'c' :
+               valueStack.push(4);
+               break;
+            case 'd' :
+               valueStack.push(5);
+               break;
+            case 'e' :
+               valueStack.push(6);
                break;
             case '+' : case '-' : case '/' : case '^' :
-               operandTwo = valueStack.pop();
-               operandOne = valueStack.pop();
-               result = //the result of the operation in nextCharacter and its operands operandOne and operandTwo
+               int operandTwo = (int)valueStack.pop();
+               int operandOne = (int)valueStack.pop();
+               int result = eval(nextCharacter, operandOne, operandTwo); //The result of the operation in nextCharacter and its operands
                valueStack.push(result);
                break;
             default: break; //Ignore unexpected characters
