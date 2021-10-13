@@ -23,6 +23,6 @@ public class ArrayStackTest{
         System.out.println("Peek Test 3: " + stack1.peek());
 
         stack1.clear();
-        System.out.println("Peek Test After Clear (Should throw exception): " + stack1.peek());
+        System.out.println("Peek Test After Clear: " + stack1.peek());
     }
 }

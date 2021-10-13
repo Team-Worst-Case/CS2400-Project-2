@@ -1,4 +1,3 @@
-import java.util.EmptyStackException;
 import java.util.Arrays;
 /**
     A class of stacks whose entries are stored in an array.
@@ -53,7 +52,11 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
    {
       checkIntegrity();
       if (isEmpty())
-         throw new EmptyStackException();
+         try {
+            throw new IllegalStateException("Attempted to pop from empty stack.");
+         } catch (IllegalStateException ex) {
+            return null;
+         }
       else
       {
          T top = stack[topIndex];
@@ -67,7 +70,11 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
    {
       checkIntegrity();
       if (isEmpty())
-         throw new EmptyStackException();
+         try {
+            throw new IllegalStateException("Attempted to peek inside empty stack.");
+         } catch (IllegalStateException ex) {
+            return null;
+         }
       else
          return stack[topIndex];
    }
@@ -93,7 +100,8 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
 
    private void checkCapacity(int newLength)
    {
-      // STUB
+      if (newLength > MAX_CAPACITY)
+         throw new IllegalStateException("Attempted to create stack with capacity greater than " + MAX_CAPACITY);
    }
 
    // Throws an exception if this object is not initialized.
@@ -116,7 +124,7 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
       else if (op == '/')
          return a / b;
       else if (op == '^')
-         return (int)Math.pow(a, b);
+         return (int) Math.pow(a, b);
       return result;
   }
 
