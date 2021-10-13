@@ -124,9 +124,11 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
    public int evaluatePostfix(String postfix) {
       ResizeableArrayStack<Integer> valueStack = new ResizeableArrayStack<Integer>(postfix.length());
 
-      while (valueStack.topIndex < postfix.length()) //Postfix has characters left to parse
+      //for (int i = 0; i < postfix.length(); i++)
+      int i = 0;
+      while (i < postfix.length()) //Postfix has characters left to parse
       {
-         char nextCharacter = postfix.charAt(topIndex + 1);
+         char nextCharacter = postfix.charAt(i);
          switch (nextCharacter)
          {
             case 'a' :
@@ -144,7 +146,7 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
             case 'e' :
                valueStack.push(6);
                break;
-            case '+' : case '-' : case '/' : case '^' :
+            case '+' : case '-' : case '*' : case '/' : case '^' :
                int operandTwo = (int)valueStack.pop();
                int operandOne = (int)valueStack.pop();
                int result = eval(nextCharacter, operandOne, operandTwo); //The result of the operation in nextCharacter and its operands
@@ -152,6 +154,7 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
                break;
             default: break; //Ignore unexpected characters
          }
+         i++;
       }
       return valueStack.peek();
    }
