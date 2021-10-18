@@ -79,4 +79,79 @@ public final class LinkedStack<T> implements StackInterface<T>
          next = nextNode;
       }
 	}
+
+   class InfixToPostfix {//InfixToPostfix class
+   
+      private static int getPriority(char c) //method needed to return priority of an operator
+      {
+         switch(c)
+         {
+            case '(': return 0;
+            case '/': case '*': return 2;
+            case '+': case '-': return 1;
+            default: return 999;
+         }
+      }
+
+
+   public static String convertToPostfix(String infix) throws Exception{
+      infix = infix + ")";
+
+      //create an object of LinkedStack class
+      LinkedStack<Character> stk = new LinkedStack<Character>();
+
+      stk.push('(');
+
+      String postfix = "";
+
+      //convert from infix to postfix
+      for(int i = 0; i < infix.length(); i++)
+      {
+         char ch = infix.charAt(i);
+
+         if(Character.isLetter(ch)) // check for variable
+         {
+            postfix = postfix + ch + " ";
+         }
+         
+         else if(ch == '(')   //check for left parenthesis
+         {
+            stk.push(ch);
+         }
+
+         else if (ch == ')')  //check for right parenthesis
+         {
+            while(stk.peek() != '(')
+            {
+               postfix = postfix + stk.peek() + " ";
+               stk.pop();
+            }
+            stk.pop();
+         }
+
+         //operator
+         else
+         {
+            int p1 = getPriority(ch);
+            int p2 = getPriority(stk.peek());
+
+            while(p1 <= p2)
+            {
+               postfix = postfix + stk.peek() + " ";
+               stk.pop();
+               p2 = getPriority(stk.peek());
+
+            }
+            stk.push(ch);
+
+            if(!stk.isEmpty()) //error check
+            System.out.println("Invalid expression");
+
+            return postfix;   //return postfix expression
+         }
+
+            
+      
+      }
+   }
 }
