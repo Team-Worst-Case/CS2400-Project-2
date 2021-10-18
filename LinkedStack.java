@@ -79,6 +79,7 @@ public final class LinkedStack<T> implements StackInterface<T>
          next = nextNode;
       }
 	}
+}
 
    class InfixToPostfix {//InfixToPostfix class
    
@@ -143,7 +144,8 @@ public final class LinkedStack<T> implements StackInterface<T>
 
             }
             stk.push(ch);
-
+         }
+      }
             if(!stk.isEmpty()) //error check
             System.out.println("Invalid expression");
 
@@ -152,6 +154,6 @@ public final class LinkedStack<T> implements StackInterface<T>
 
             
       
-      }
+      
    }
-}
+
