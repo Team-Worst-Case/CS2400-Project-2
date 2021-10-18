@@ -79,23 +79,20 @@ public final class LinkedStack<T> implements StackInterface<T>
          next = nextNode;
       }
 	}
-}
 
-   class InfixToPostfix {//InfixToPostfix class
-   
-      private static int getPriority(char c) //method needed to return priority of an operator
+   private static int getPriority(char c) //method needed to return priority of an operator
+   {
+      switch(c)
       {
-         switch(c)
-         {
-            case '(': return 0;
-            case '/': case '*': return 2;
-            case '+': case '-': return 1;
-            default: return 999;
-         }
+         case '(': return 0;
+         case '/': case '*': return 2;
+         case '+': case '-': return 1;
+         default: return 999;
       }
+   }
 
-
-   public static String convertToPostfix(String infix) throws Exception{
+   public static String convertToPostfix(String infix) throws Exception
+   {
       infix = infix + ")";
 
       //create an object of LinkedStack class
@@ -146,14 +143,9 @@ public final class LinkedStack<T> implements StackInterface<T>
             stk.push(ch);
          }
       }
-            if(!stk.isEmpty()) //error check
-            System.out.println("Invalid expression");
+      if(!stk.isEmpty()) //error check
+      System.out.println("Invalid expression");
 
-            return postfix;   //return postfix expression
-         }
-
-            
-      
-      
+      return postfix;   //return postfix expression
    }
-
+}

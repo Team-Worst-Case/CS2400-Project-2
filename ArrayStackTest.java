@@ -1,4 +1,5 @@
-public class ArrayStackTest{
+public class ArrayStackTest
+{
     public static void main(String[] args)
     {
         ResizeableArrayStack <Integer> stack1 = new ResizeableArrayStack <Integer>();
