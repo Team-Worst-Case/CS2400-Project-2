@@ -91,7 +91,7 @@ public final class LinkedStack<T> implements StackInterface<T>
       }
    }
 
-   public static String convertToPostfix(String infix) throws Exception
+   public static String convertToPostfix(String infix)
    {
       infix = infix + ")";
 
