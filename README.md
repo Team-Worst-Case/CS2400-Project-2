@@ -7,7 +7,7 @@ Roberto Tabares - ArrayStackTest, Task 1 & Task 4 excel sheet
 
 Extra Features: Unit testing for: ResizeableArrayStack methods
 
-Screencast: //link goes here
+Screencast: https://youtu.be/xesyJQU11TY
 
 Documentation: https://key-wii.github.io/CS2400-Project-2/index.html To access source code, check the repository below.
 Repository link: https://github.com/key-wii/CS2400-Project-2
